@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Website Kelas 7H</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+/* BACKGROUND */
+
+body{
+color:white;
+overflow-x:hidden;
+background:linear-gradient(-45deg,#020617,#020617,#020617,#0f172a);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.loader-title{
+font-size:40px;
+letter-spacing:5px;
+animation:glow 2s infinite alternate;
+}
+
+.loader-bar{
+width:240px;
+height:6px;
+background:#222;
+margin-top:25px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.loader-progress{
+height:100%;
+width:0%;
+background:cyan;
+animation:loading 3s forwards;
+}
+
+@keyframes loading{
+to{width:100%;}
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px cyan;}
+to{text-shadow:0 0 40px cyan;}
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:30px;
+padding:18px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+z-index:100;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
+
+nav a:hover{
+color:cyan;
+}
+
+/* PAGE */
+
+.page{
+display:none;
+padding-top:80px;
+animation:fade 0.5s;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:url("https://files.catbox.moe/s19rjq.jpg") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.hero h1{
+font-size:70px;
+letter-spacing:6px;
+animation:glow 2s infinite alternate;
+}
+
+/* SECTION */
+
+.section{
+padding:90px 40px;
+}
+
+.section-title{
+text-align:center;
+font-size:36px;
+margin-bottom:60px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+padding:30px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+text-align:center;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 40px cyan;
+}
+
+/* GALERI */
+
+#galeri{
+background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover fixed;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:15px;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px cyan;
+}
+
+/* MENU BAWAH */
+
+.bottom-nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+padding:12px 30px;
+border-radius:40px;
+display:flex;
+gap:25px;
+box-shadow:0 0 25px cyan;
+z-index:200;
+}
+
+.bottom-nav button{
+background:none;
+border:none;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* MUSIC */
+
+.music-btn{
+position:fixed;
+bottom:90px;
+right:20px;
+background:cyan;
+color:black;
+padding:12px 20px;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+background:black;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+<div class="loader-title">LOADING 7H WEBSITE</div>
+<div class="loader-bar"><div class="loader-progress"></div></div>
+</div>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('motivasi')">Motivasi</a>
+<a onclick="showPage('galeri')">Galeri</a>
+<a onclick="showPage('struktur')">Struktur</a>
+<a onclick="showPage('juara')">Juara</a>
+<a onclick="showPage('siswa')">Siswa</a>
+<a onclick="showPage('tentang')">Tentang</a>
+</nav>
+
+<div id="home" class="page active">
+<section class="hero">
+<div class="hero-content">
+<h1>KELAS 7H</h1>
+<p>Kompak • Solid • Berprestasi</p>
+</div>
+</section>
+</div>
+
+<div id="motivasi" class="page">
+<section class="section">
+<div class="section-title">Motivasi</div>
+<div class="grid">
+<div class="card">Belajar hari ini adalah investasi masa depan.</div>
+<div class="card">Jangan takut gagal, takutlah jika tidak mencoba.</div>
+<div class="card">Kerja keras hari ini adalah kebanggaan besok.</div>
+<div class="card">Mimpi besar dimulai dari langkah kecil.</div>
+<div class="card">Kelas 7H pasti bisa.</div>
+<div class="card">Terus belajar dan berkembang.</div>
+</div>
+</section>
+</div>
+
+<div id="galeri" class="page">
+<section class="section">
+<div class="section-title">Galeri Kelas</div>
+<div class="gallery">
+<img src="https://files.catbox.moe/s19rjq.jpg">
+<img src="https://files.catbox.moe/s19rjq.jpg">
+<img src="https://files.catbox.moe/s19rjq.jpg">
+<img src="https://files.catbox.moe/s19rjq.jpg">
+</div>
+</section>
+</div>
+
+<div id="struktur" class="page">
+<section class="section">
+<div class="section-title">Struktur Kelas</div>
+<div class="grid">
+<div class="card"><b>Wali Kelas</b><br>Buk Pande</div>
+<div class="card"><b>Ketua Kelas</b><br>Agastya</div>
+<div class="card"><b>Wakil Ketua</b><br>Listia</div>
+<div class="card"><b>sekertaris</b><br>Sing nawang</div>
+<div class="card"><b>Bendahara</b><br>Sing nawang</div>
+</div>
+</section>
+</div>
+
+<div id="juara" class="page">
+<section class="section">
+<div class="section-title">Penghargaan kelas</div>
+<div class="grid">
+<div class="card">🥇 Juara 1<br>Lomba Mading</div>
+<div class="card">🥈 Juara 2<br>Tarik Tambang</div>
+<div class="card">🥉 Juara 3<br>Karangan bunga</div>
+</div>
+</section>
+</div>
+
+<div id="siswa" class="page">
+<section class="section">
+<div class="section-title">Daftar Siswa</div>
+<div class="card">
+Siswa Kelas 7H
+</div>
+</section>
+</div>
+
+<div id="tentang" class="page">
+<section class="section">
+<div class="section-title">Tentang Kelas 7H</div>
+<div class="grid">
+<div class="card">Kelas 7H adalah kelas yang penuh semangat belajar.</div>
+<div class="card">Kami saling mendukung meraih prestasi.</div>
+<div class="card">Moto kami: Kompak, Hebat, Berprestasi.</div>
+</div>
+</section>
+</div>
+
+<footer>
+© 2026 Website Kelas 7H
+</footer>
+
+<div class="bottom-nav">
+<button onclick="showPage('home')">🏠</button>
+<button onclick="showPage('motivasi')">🔥</button>
+<button onclick="showPage('galeri')">📷</button>
+<button onclick="showPage('struktur')">👥</button>
+<button onclick="showPage('juara')">🏆</button>
+<button onclick="showPage('siswa')">🎓</button>
+</div>
+
+<div class="music-btn" onclick="toggleMusic()">🎵 Musik</div>
+
+<audio id="music" loop>
+<source src="https://files.catbox.moe/7acnax.mp3">
+</audio>
+
+<script>
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none"
+},3000)
+
+function showPage(page){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+document.getElementById(page).classList.add("active")
+}
+
+let music=document.getElementById("music")
+
+function toggleMusic(){
+if(music.paused){
+music.play()
+}else{
+music.pause()
+}
+}
+
+</script>
+
+</body>
+</html>
